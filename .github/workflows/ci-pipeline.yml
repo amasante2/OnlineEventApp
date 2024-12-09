@@ -28,7 +28,7 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest test_dummy.py  # Adjust this path if your tests are located elsewhere
+        pytest test/ # This will look for test files in the 'tests' directory
 
   security:
     runs-on: ubuntu-latest
