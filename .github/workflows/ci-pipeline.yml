@@ -28,7 +28,7 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest  # Or replace with your project's test command
+        pytest tests/  # Adjust this path if your tests are located elsewhere
 
   security:
     runs-on: ubuntu-latest
@@ -48,3 +48,4 @@ jobs:
 
     - name: Perform CodeQL analysis
       uses: github/codeql-action/analyze@v2
+
