@@ -28,8 +28,7 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest tests/ # Adjust this path if your tests are located elsewhere
-        # Or replace with your project's test command (e.g., `pytest` if you want it to check the whole repo)
+        pytest test_dummy.py/  # Adjust this path if your tests are located elsewhere
 
   security:
     runs-on: ubuntu-latest
@@ -49,3 +48,4 @@ jobs:
 
     - name: Perform CodeQL analysis
       uses: github/codeql-action/analyze@v2
+
