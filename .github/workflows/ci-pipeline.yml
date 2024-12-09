@@ -28,8 +28,8 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest tests/test_dummy.py # This will look for tests files in the 'tests' directory
-        
+        pytest tests/ # This will look for test files in the 'tests' directory
+
   security:
     runs-on: ubuntu-latest
     permissions:
