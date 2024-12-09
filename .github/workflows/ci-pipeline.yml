@@ -28,10 +28,12 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest test_dummy.py/  # Adjust this path if your tests are located elsewhere
+        pytest test_dummy.py  # Adjust this path if your tests are located elsewhere
 
   security:
     runs-on: ubuntu-latest
+    permissions:
+      security-events: write
 
     steps:
     - name: Checkout code
@@ -48,4 +50,3 @@ jobs:
 
     - name: Perform CodeQL analysis
       uses: github/codeql-action/analyze@v2
-
