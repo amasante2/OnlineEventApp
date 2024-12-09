@@ -28,7 +28,7 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest test/ # This will look for test files in the 'tests' directory
+        pytest tests/ # This will look for test files in the 'tests' directory
 
   security:
     runs-on: ubuntu-latest
