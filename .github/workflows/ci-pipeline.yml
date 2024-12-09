@@ -28,7 +28,8 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest  # Or replace with your project's test command
+        pytest tests/ # Adjust this path if your tests are located elsewhere
+        # Or replace with your project's test command (e.g., `pytest` if you want it to check the whole repo)
 
   security:
     runs-on: ubuntu-latest
