@@ -1,4 +1,3 @@
-# test_dummy.py
-
 def test_dummy():
-    assert True
+    assert 1 + 1 == 2
+

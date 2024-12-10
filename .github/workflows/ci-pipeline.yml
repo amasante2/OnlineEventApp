@@ -1,4 +1,4 @@
-name: Python CI Pipeline with CodeQL
+nname: Python CI Pipeline with CodeQL
 
 on:
   push:
@@ -29,6 +29,7 @@ jobs:
     - name: Run tests
       run: |
         pytest tests/ 
+
   security:
     runs-on: ubuntu-latest
     permissions:
