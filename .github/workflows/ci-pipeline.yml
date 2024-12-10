@@ -1,4 +1,4 @@
-nname: Python CI Pipeline with CodeQL
+name: Python CI Pipeline with CodeQL
 
 on:
   push:
