@@ -1,9 +1,12 @@
-from flask import render_template, url_for, flash, redirect, request
+from flask import Blueprint, render_template, url_for, flash, redirect, request
 from flask_login import login_user, logout_user, login_required, current_user
-from app import app, db
 from models import User
+from app import db  # We can still import `db` from app to interact with the database
 
-@app.route("/register", methods=['GET', 'POST'])
+# Create a Blueprint for the views
+views = Blueprint('views', __name__)
+
+@views.route("/register", methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         username = request.form['username']
@@ -14,7 +17,7 @@ def register():
         user = User.query.filter_by(email=email).first()
         if user:
             flash('Email already registered. Please log in.', 'danger')
-            return redirect(url_for('login'))
+            return redirect(url_for('views.login'))  # Use Blueprint-specific route
         
         # Create new user
         new_user = User(username=username, email=email)
@@ -22,11 +25,11 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         flash('Your account has been created!', 'success')
-        return redirect(url_for('login'))
+        return redirect(url_for('views.login'))  # Use Blueprint-specific route
     
     return render_template('register.html')
 
-@app.route("/login", methods=['GET', 'POST'])
+@views.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form['email']
@@ -36,20 +39,20 @@ def login():
         if user and user.check_password(password):
             login_user(user)  # Log the user in
             flash('Login successful!', 'success')
-            return redirect(url_for('dashboard'))  # Redirect to user dashboard or home page
+            return redirect(url_for('views.dashboard'))  # Use Blueprint-specific route
         else:
             flash('Login failed. Check your email and/or password.', 'danger')
     
     return render_template('login.html')
 
-@app.route("/dashboard")
+@views.route("/dashboard")
 @login_required  # Ensure the user is logged in
 def dashboard():
     return render_template('dashboard.html')  # Add a dashboard template or page
 
-@app.route("/logout")
+@views.route("/logout")
 @login_required  # Ensure the user is logged in
 def logout():
     logout_user()  # Log the user out
     flash('You have been logged out.', 'success')
-    return redirect(url_for('login'))  # Redirect to the login page
+    return redirect(url_for('views.login'))  # Use Blueprint-specific route
